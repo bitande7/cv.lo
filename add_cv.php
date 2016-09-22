@@ -1,6 +1,9 @@
 <?php
 
-var_dump($_POST);
+include 'validate.php';
+
+include 'save.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -29,21 +32,36 @@ var_dump($_POST);
 
     <div class="col-md-6 col-md-offset-3">
 
+        <?php
+
+        if (!empty($errors)) {
+            echo '<p class="bg-danger">';
+
+            foreach ($errors as $error) {
+                echo $error . '<br>';
+            }
+
+            echo '</p>';
+        }
+
+        ?>
+
+
         <h1>Add new CV</h1>
 
-        <form action="save.php" method="post">
+        <form action="" method="post">
             <div class="form-group">
-                <label for="exampleInputEmail1">Имя</label>
+                <label>Имя</label>
                 <input type="text" class="form-control" name="first_name" placeholder="Имя">
             </div>
 
             <div class="form-group">
-                <label for="exampleInputEmail1">Фамилия</label>
-                <input type="text" class="form-control" name="last_name"  placeholder="Фамилия">
+                <label>Фамилия</label>
+                <input type="text" class="form-control" name="last_name" placeholder="Фамилия">
             </div>
 
             <div class="form-group">
-                <label for="exampleInputEmail1">Год рождения</label>
+                <label>Год рождения</label>
                 <input type="number" class="form-control" name="birth_year" min="1910" max="2016" step="1">
             </div>
 
@@ -56,13 +74,13 @@ var_dump($_POST);
                     <input type="checkbox" value="Python" name="p_lang[1]"> Python
                 </label>
                 <label class="checkbox-inline">
-                    <input type="checkbox"  value="Ruby" name="p_lang[2]"> Ruby
+                    <input type="checkbox" value="Ruby" name="p_lang[2]"> Ruby
                 </label>
                 <label class="checkbox-inline">
-                    <input type="checkbox"  value="C++" name="p_lang[3]"> C++
+                    <input type="checkbox" value="C++" name="p_lang[3]"> C++
                 </label>
                 <label class="checkbox-inline">
-                    <input type="checkbox"  value="Java" name="p_lang[4]"> Java
+                    <input type="checkbox" value="Java" name="p_lang[4]"> Java
                 </label>
                 <label class="checkbox-inline">
                     <input type="checkbox" value="JavaScript" name="p_lang[5]"> JavaScript
@@ -99,7 +117,8 @@ var_dump($_POST);
 
                 <div class="col-xs-3">
                     <input type="number" class="form-control" name="salary[1]" placeholder="max">
-                </div><br>
+                </div>
+                <br>
 
             </div>
             <br>
@@ -108,12 +127,9 @@ var_dump($_POST);
         </form>
 
 
-
     </div>
 
 </div>
-
-
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
